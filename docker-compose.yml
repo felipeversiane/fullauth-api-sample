@@ -1,0 +1,74 @@
+version: "3"
+
+volumes:
+  local_postgres_data: {}
+  local_postgres_data_backups: {}
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: nz02
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/src
+      - ./config/nginx:/etc/nginx/conf.d
+      - .:/code
+    depends_on:
+      - web
+    networks:
+      - djangonetwork
+  web:
+    build:
+      context: .
+      dockerfile: compose/django/Dockerfile
+    container_name: dz02
+    depends_on:
+      - db
+    volumes:
+      - ./src:/src
+      - .:/code
+    expose:
+      - "8000"
+    links:
+      - redis
+    env_file:
+      - ./.envs/.django
+    networks:
+      - djangonetwork   
+  db:
+    build:
+      context: .
+      dockerfile: compose/postgres/Dockerfile
+    container_name: pz02
+    env_file:
+      - ./.envs/.postgres
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data
+      - local_postgres_data_backups:/backups
+    networks:
+      - djangonetwork
+  redis:
+    image: redis:alpine
+    container_name: rz02
+    ports:
+      - "6379:6379"
+    networks:
+      - djangonetwork
+  # app:
+  #   build: 
+  #     context: ./app
+  #     dockerfile: ../compose/nextjs/Dockerfile
+  #   container_name: az02
+  #   command: npm run dev
+  #   volumes:
+  #     - ./app:/app
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     NODE_ENV: development
+  #   networks:
+  #     - djangonetwork
+networks:
+  djangonetwork:
+    driver: bridge
