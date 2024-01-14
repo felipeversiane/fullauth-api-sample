@@ -6,7 +6,8 @@ from .views import (
     CustomTokenObtainPairView,
     CustomTokenRefreshView,
     CustomTokenVerifyView,
-    LogoutView
+    LogoutView,
+    CustomProviderAuthView
 )
 
 router = routers.DefaultRouter()
@@ -15,6 +16,8 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     re_path('', include(router.urls)),
+
+    re_path(r'^o/(?P<provider>\S+)/$',CustomProviderAuthView.as_view(),name='provider-auth'),
 
     path('jwt/create/', CustomTokenObtainPairView.as_view()),
     path('jwt/refresh/', CustomTokenRefreshView.as_view()),
