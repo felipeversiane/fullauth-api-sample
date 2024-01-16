@@ -1,4 +1,5 @@
 import os
+import sys
 from os import getenv, path
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
@@ -42,6 +43,7 @@ PREREQUISITE_APPS = [
     'djoser',
     'storages',
     'social_django',
+    'drf_yasg',
 ]
 
 PROJECT_APPS = [
@@ -235,8 +237,6 @@ else:
 
 CELERY_BROKER_URL = 'redis://redis:6379/0'
 CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
-
-
 
 
 LOGGING = {

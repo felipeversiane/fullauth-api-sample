@@ -55,20 +55,20 @@ services:
       - "6379:6379"
     networks:
       - djangonetwork
-  # app:
-  #   build: 
-  #     context: ./app
-  #     dockerfile: ../compose/nextjs/Dockerfile
-  #   container_name: az02
-  #   command: npm run dev
-  #   volumes:
-  #     - ./app:/app
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     NODE_ENV: development
-  #   networks:
-  #     - djangonetwork
+  app:
+    build: 
+      context: ./app
+      dockerfile: ../compose/nextjs/Dockerfile
+    container_name: az02
+    command: npm run dev
+    volumes:
+      - ./app:/app
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+    networks:
+      - djangonetwork
 networks:
   djangonetwork:
     driver: bridge
