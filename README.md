@@ -1,6 +1,7 @@
 # Deploy Django and Nextjs using Nginx, Celery, Redis and Postgresql with Docker
 
-Where it is described how this boilerplate was created from scratch so that you can build your own.
+A full auth django project with djoser.
+In this project i used the djoser lib to make a full authentication with JWT Tokens, OAuth and Email Verification.
 
 ## Advantages
 1. Ready to use with your django/nextjs project.
