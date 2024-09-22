@@ -5,7 +5,7 @@ In this project i used the djoser lib to make a full authentication with JWT Tok
 
 ## Advantages
 1. Ready to use with your django/nextjs project.
-2. Combined with NGINX, Redis, Celery, Tailwind to handle relevent things.
+2. Combined with NGINX, Celery, Tailwind to handle relevent things.
 3. Alpine based images are used, so that sizes of the images are compartively low.
 4. Now comes built it with Numpy, Scipy and Pandas support. So you can integrate your datascience projects with this. [Instructions](#now-featuring-numpy-scipy-and-pandas) for integrating these libraries are also shared in the `Dockerfile`.
 5. With Numpy, Pandas and Scipy dependecies installed, the total size is 657MB(may differ if you have more packages). Without these, size reduces to 390MB.
