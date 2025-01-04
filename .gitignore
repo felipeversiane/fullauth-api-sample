@@ -3,6 +3,8 @@
 */static/ckeditor
 */static/rest_framework
 */static/streamfield
+*/static/drf-yasg
+*/static/
 /__pycache__
 src/src_config/__pycache__/*.pyc
 .DS_Store
